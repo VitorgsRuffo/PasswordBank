@@ -1,21 +1,7 @@
-<?php 
 
-
-
-
-
-
-?>
-
-
-
-
-
-<!DOCTYPE html>
-<html>
-
-	<?php require("templates/header_1.php"); ?>
-
+<?php require("templates/header_1.php"); ?>
+	
+	<main>
 		<div>
 			<div>
 				<h3>Welcome to PasswordBank!</h3>
@@ -33,7 +19,7 @@
 				</ul>
 			</div>
 		</div>
+	</main>
 
-	<?php require("templates/footer.php"); ?>
+<?php require("templates/footer.php"); ?>
 
-</html>

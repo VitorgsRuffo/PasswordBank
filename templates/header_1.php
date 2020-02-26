@@ -1,21 +1,25 @@
-<head>
+<!DOCTYPE html>
+<html>
 
-	<title>PasswordBank</title>
+	<head>
 
-</head>
+		<meta charset="utf-8">
 
-<body>
+		<title>PasswordBank</title>
 
+	</head>
 
-	<header>
+	<body>
+
+		<header>
 		
-		<a href="index.php"><h1>PasswordBank</h1></a>
+			<a href="index.php"><h1>PasswordBank</h1></a>
 
-		<nav>
-			<ul>
-				<li><a href="sign-in.php">Sign in</a></li>
-				<li><a href="sign-up.php">Sign up</a></li>
-			</ul>
-		</nav>
+			<nav>
+				<ul>
+					<li><a href="sign-in.php">Sign in</a></li>
+					<li><a href="sign-up.php">Sign up</a></li>
+				</ul>
+			</nav>
 
-	</header>
+		</header>
