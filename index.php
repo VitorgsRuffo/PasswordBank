@@ -28,7 +28,7 @@
 
 				<ul>
 					<li>Passwords easily accessible from every device.</li>
-					<li>A secure conteiner for your passwords.</li>
+					<li>A secure container for your passwords.</li>
 					<li>Free to use.</li>
 				</ul>
 			</div>
