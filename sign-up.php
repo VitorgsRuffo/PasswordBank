@@ -13,12 +13,12 @@
 
 				<form action="scripts/sign-up-script.php" method="POST">
 
-					<label for="Name">Name</label>
-					<input type="text" name="name" id="Name">
+					<label for="username">Username</label>
+					<input type="text" name="username" id="username">
 					<div></div>
 
 					<label for="Email">E-mail</label>
-					<input type="email" name="email" id="Email">
+					<input type="text" name="email" id="Email">
 					<div></div>
 
 					<label for="pwd">Password</label>
@@ -26,7 +26,7 @@
 					<div></div>
 
 					<label for="pwd-2">Repeat password</label>
-					<input type="password" name="password" id="pwd-2">
+					<input type="password" name="password-2" id="pwd-2">
 					<div></div>
 
 					<div><input type="checkbox" name="cBox">By clicking, you agree to our Terms of Use and Privacy Policy.</div>
