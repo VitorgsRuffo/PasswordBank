@@ -2,9 +2,10 @@
 
 	if(isset($_POST['submit'])){
 
+		//connecting to the database system:
 		require('../config/db_connect.php');
 		
-
+		//grabbing user submited data:
 		$username = $_POST['username'];
 		$email = $_POST['email'];
 		$password = $_POST['password'];
@@ -37,7 +38,7 @@
 
 				exit();
 
-			//checking for a valid username:
+			//checking for a valid username: REGEX
 			} else if(!preg_match("/^[a-zA-Z0-9]*$/", $username)){
 
 				header("Location: ../sign-up.php?error=invalidusername&email=".$email);
@@ -154,7 +155,7 @@
 
 		mysqli_close($connection);
 
-	//if user haven't gotten here by clicking the form submit button we wanna redirect him back to the sign up page:
+	//if user haven't gotten here by clicking the form submit button we wanna redirect him back to the sign up page: we don't wanna run all this code if user is not trying to signing up.
 	} else {
 
 		header("Location: ../sign-up.php");

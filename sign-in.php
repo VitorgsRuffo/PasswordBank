@@ -12,8 +12,8 @@
 
 				<div></div>
 					
-				<label for="Email">E-mail</label>
-				<input type="email" name="email" id="Email">
+				<label for="Emailuid">E-mail/Username</label>
+				<input type="text" name="emailuid" id="Emailuid">
 
 
 				<label for="pwd">Password</label>
