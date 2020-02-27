@@ -1,5 +1,5 @@
 
-<?php require('templates/header_1.php'); ?>
+<?php require('templates/header.php'); ?>
 	
 	<main>
 		<div>

@@ -2,7 +2,7 @@
 	
 	if(isset($_POST['submit'])){
 
-		require('db_connect.php');
+		require('../config/db_connect.php');
 
 		$emailuid = $_POST['emailuid'];
 		$password = $_POST['password'];
@@ -72,15 +72,15 @@
 						//now that the user entered the right info let's sign him in to the website: we're gonna use $_SESSION.
 						else if($passwordCheck == true){
 
-							//we'll user the SESSION vars to tell if user is logged in or logged out.
+							//we'll use the SESSION vars to tell if user is logged in or logged out.
 
-							//In order to see those global vars we need to start a session on wvery page that will user 'em. (That's why we started a session on top of the header file)
+							//In order to see those global vars we need to start a session on every page that will user 'em. (That's why we started a session on top of the header file)
 							session_start();
 
 							$_SESSION['userId'] = $record['id'];
 							$_SESSION['username'] = $record['username'];
 
-							header("Location: ../index.php?signin=success");
+							header("Location: ../home.php");
 
 							exit();
 
