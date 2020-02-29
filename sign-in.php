@@ -1,6 +1,6 @@
 
 <?php require('templates/header.php'); ?>
-	
+
 	<main>
 		<div>
 			<h2>Sign in</h2>

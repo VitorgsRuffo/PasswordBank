@@ -2,6 +2,15 @@
 <?php require("templates/header.php"); ?>
 	
 	<main>
+
+		<?php if(isset($_GET['success'])): ?>
+			<?php if($_GET['success'] == "signup"): ?>
+
+				<div>Congratulations! You have successfully registered at our website!</div>
+
+			<?php endif; ?>
+		<?php endif; ?>
+
 		<div>
 			<div>
 				<h3>Welcome to PasswordBank!</h3>

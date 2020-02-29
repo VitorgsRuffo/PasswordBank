@@ -17,6 +17,7 @@
 			//checking if any field is empty:
 			if(empty($username) || empty($email) ||empty($password) || empty($password_2)){
 
+				//the header function makes a GET request for the location specified.
 				header("Location: ../sign-up.php?error=emptyfields&username=".$username."&email=".$email);
 
 				//stops the this script from running. We don't wanna to continue to run it if user left any field empty.
@@ -26,7 +27,7 @@
 			//checking for valid email AND valid username:
 			}else if(!filter_var($email, FILTER_VALIDATE_EMAIL) && !preg_match("/^[a-zA-Z0-9]*$/", $username)){
 
-				header("Location: ../sign-up.php?error=invaliddata");
+				header("Location: ../sign-up.php?error=invalidemailandusername&username=&email=");
 
 				exit();
 
@@ -34,14 +35,14 @@
 			//checking for a valid e-mail:
 			} else if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
 
-				header("Location: ../sign-up.php?error=invalidemail&username=".$username);
+				header("Location: ../sign-up.php?error=invalidemail&email=&username=".$username);
 
 				exit();
 
 			//checking for a valid username: REGEX
 			} else if(!preg_match("/^[a-zA-Z0-9]*$/", $username)){
 
-				header("Location: ../sign-up.php?error=invalidusername&email=".$email);
+				header("Location: ../sign-up.php?error=invalidusername&username=&email=".$email);
 
 				exit();
 
@@ -98,7 +99,7 @@
 							//(obviously it's gonna be either 0 or 1, because either an user has already taken that username or not.)
 							if($resultCheck > 0){
 
-								header("Location: ../sign-up.php?error=usernamealreadytaken&email=".$email);
+								header("Location: ../sign-up.php?error=usernamealreadytaken&username=&email=".$email);
 
 								exit();
 							}
@@ -143,7 +144,7 @@
 				//executing the command on the database:
 				mysqli_stmt_execute($statement);
 
-				header("Location: ../sign-up.php?signup=success");
+				header("Location: ../index.php?success=signup");
 
 				exit();
 
