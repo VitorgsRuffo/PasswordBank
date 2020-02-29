@@ -31,42 +31,51 @@
 					
 			if($_GET['error'] == "emptyfields"){ 	
 
-				$empty = 'Fill in all fields!';
+				$empty = 'Fill in all fields.';
 
 				fillFields();
 					
 			}else if($_GET['error'] == "invalidemailandusername"){ 
 
-				$usernameError = 'Enter a valid username!';
-				$emailError = 'Enter a valid e-mail!';
+				$usernameError = 'Enter a valid username.';
+
+				$emailError = 'Enter a valid e-mail.';
 
 				fillFields();
 
 			}else if($_GET['error'] == "invalidemail"){
 
-				$emailError = 'Enter a valid e-mail!';
+				$emailError = 'Enter a valid e-mail.';
 
 				fillFields();
 
 			}else if($_GET['error'] == "invalidusername"){
 
-				$usernameError = 'Enter a valid username!';
+				$usernameError = 'Enter a valid username.';
 
 				fillFields();
 
 			}else if($_GET['error'] == "differentpasswords"){
 
-				$pwdError = "Passwords don't match!";
+				$pwdError = "Passwords don't match.";
 
 				fillFields();
 
 			}else if($_GET['error'] == "usernamealreadytaken"){
 
-				$usernameError = 'Username already taken!';
+				$usernameError = 'Username already taken.';
 
 				fillFields();
 					
-			} 
+			}else if($_GET['error'] == "emailalreadytaken"){
+
+				$usernameError = 'E-mail already taken.';
+
+				fillFields();
+					
+			}  
+
+
 		}
 				
 	?>	

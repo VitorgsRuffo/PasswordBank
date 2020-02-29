@@ -109,7 +109,39 @@
 
 				//one more check: checking if email has already been registered at the website.
 
-					//soon:
+					
+					$sql = "SELECT email FROM user_registration WHERE email=?";
+
+
+					$statement = mysqli_stmt_init($connection);
+
+					if(!mysqli_stmt_prepare($statement, $sql)){
+
+						header("Location: ../sign-up.php?error=sqlerror");
+
+						exit();
+
+					}else{
+
+						mysqli_stmt_bind_param($statement, "s", $email);
+
+
+						mysqli_stmt_execute($statement);
+
+
+						mysqli_stmt_store_result($statement);
+
+
+						$resultCheck = mysqli_stmt_num_rows($statement);
+
+						if($resultCheck > 0){
+
+							header("Location: ../sign-up.php?error=emailalreadytaken&username=".$username."&email=");
+
+							exit();
+
+						}
+					}
 			}
 
 
