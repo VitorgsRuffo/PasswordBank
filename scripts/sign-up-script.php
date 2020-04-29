@@ -1,4 +1,4 @@
-<?php 
+<?php //this script basically checks if the data that user submitted is valid and if so it registers the user on the website (save its login info into a database).
 
 	if(isset($_POST['submit'])){
 
@@ -20,7 +20,7 @@
 				//the header function makes a GET request for the location specified.
 				header("Location: ../sign-up.php?error=emptyfields&username=".$username."&email=".$email);
 
-				//stops the this script from running. We don't wanna to continue to run it if user left any field empty.
+				//stops the this script from running. We don't wanna to continue to run it if user has left any fields empty.
 				exit();
 
 
@@ -56,11 +56,10 @@
 			} else {
 				//checking if username already exists:
 
-
-					//we're gonna user prepared statements to run the query safely on the database.
+					//we're gonna use prepared statements to run the query safely on the database.
 
 					//?: is a placeholder.
-					$sql = "SELECT username FROM user_registration WHERE username=?";
+					$sql = "SELECT username FROM user WHERE username=?";
 
 					//create a prepared statement:
 					$statement = mysqli_stmt_init($connection);
@@ -75,22 +74,14 @@
 					//if we successfully prepared the statement:
 					} else {
 
-						//attaching the user data to the sql statement placeholder(?):
+						mysqli_stmt_bind_param($statement, "s", $username); //attaching the user data to the sql statement placeholder(?):
+						//1st param: statement.   //2nd: data type - (s: string, b: blob, i: integer, double: d.)   //3rd: user data itself;
 
-						
-						mysqli_stmt_bind_param($statement, "s", $username);
-						//1st param: statement
-						//2nd: data type.
-						//(//s: string, b: blob, i: integer, double: d.)
-						//3rd: user data itself;
-
-						//Finally running the query command on the database:
-						mysqli_stmt_execute($statement);
-
+						mysqli_stmt_execute($statement); //Finally running the query command on the database:
 
 						//checking if we had a match (meaning if that username was already registered at the website)
 
-							//storing the result inside the statement var itself:
+							//storing the result inside the statement object itself:
 							mysqli_stmt_store_result($statement);
 
 							//getting how many rows from the database was returned by the query command. 
@@ -103,14 +94,11 @@
 
 								exit();
 							}
-
 					}
 
-
 				//one more check: checking if email has already been registered at the website.
-
 					
-					$sql = "SELECT email FROM user_registration WHERE email=?";
+					$sql = "SELECT email FROM user WHERE email=?";
 
 
 					$statement = mysqli_stmt_init($connection);
@@ -144,11 +132,10 @@
 					}
 			}
 
-
 		//if we got to this part of the code, it means that there weren't any errors and now we can sign the user up to the website:
 
 			//making the sql command with the placeholders for the user input
-			$sql = "INSERT INTO user_registration(username, email, password) VALUES(?, ?, ?)";
+			$sql = "INSERT INTO user (username, email, pwd) VALUES (?, ?, ?)";
 
 			//creating a statement that will receive the sql command:
 			$statement = mysqli_stmt_init($connection);
@@ -165,11 +152,9 @@
 			else{
 
 				//before we bind the password to the statement we need to hash (encrypt) it first: if a hacker gets access to our database he will not be able to see the password.
-
-				//second parameter is a hashing method: the best is Bcrypt.
-				$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-
+					
+					$hashedPassword = password_hash($password, PASSWORD_DEFAULT); //second parameter is a hashing method: the best is Bcrypt.
+				
 				//binding to the sql statement the user data needed to run it properly.
 				mysqli_stmt_bind_param($statement, "sss", $username, $email, $hashedPassword);
 
@@ -188,17 +173,12 @@
 
 		mysqli_close($connection);
 
-	//if user haven't gotten here by clicking the form submit button we wanna redirect him back to the sign up page: we don't wanna run all this code if user is not trying to signing up.
+	//if user haven't gotten here by clicking the form submit button we wanna redirect the person back to the sign up page: we don't wanna run all this code if user is not trying to signing up.
 	} else {
 
 		header("Location: ../sign-up.php");
 
 		exit();
-
 	}
 
 ?>
-
-
-
-

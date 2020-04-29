@@ -1,10 +1,9 @@
-
 <?php require('templates/header.php'); ?>
 	
 	<!--This piece of script here will let the user know if he has made some mistake when trying to sign in by showing some specfic massages -->
 	<?php 
+
 		$error = '';
-		
 
 		if(isset($_GET['error'])){
 
@@ -12,12 +11,11 @@
 
 				$error = 'Fill in all fields.';
 
-			}else if( $_GET['error'] == 'incorrectuser'|| $_GET['error'] == 'wrongpwd'){
+			}else if($_GET['error'] == 'incorrectuser'|| $_GET['error'] == 'wrongpwd'){
 
 				$error = 'Incorrect username or password.';
 
 			}
-
 		}
 
 	?>
@@ -27,8 +25,7 @@
 			<h2>Sign in</h2>
 		</div>
 
-		<div>
-				
+		<div>	
 			<form action="scripts/sign-in-script.php" method="POST">
 
 				<div><?php echo $error; ?></div>
@@ -36,17 +33,15 @@
 				<label for="Emailuid">E-mail/Username</label>
 				<input type="text" name="emailuid" id="Emailuid">
 
-
 				<label for="pwd">Password</label>
 				<input type="password" name="password" id="pwd">
 
 				<input type="submit" name="submit" value="Sign in">
-
-				<div><a href="#">Forgot password?</a></div>
-
-				<div>Don't have an account? <a href="sign-up.php">Sign up</a></div>
-
 			</form>
+
+			<div><a href="#">Forgot password?</a></div>
+
+			<div>Don't have an account? <a href="sign-up.php">Sign up</a></div>
 		</div>
 	</main>
 

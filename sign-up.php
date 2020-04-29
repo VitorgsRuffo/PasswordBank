@@ -69,15 +69,12 @@
 					
 			}else if($_GET['error'] == "emailalreadytaken"){
 
-				$usernameError = 'E-mail already taken.';
+				$emailError = 'E-mail already taken.';
 
 				fillFields();
 					
 			}  
-
-
-		}
-				
+		}		
 	?>	
 
 	<main>

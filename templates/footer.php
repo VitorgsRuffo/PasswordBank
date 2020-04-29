@@ -11,6 +11,8 @@
 					<li><a href="#">Privacy Policy</a></li>
 
 				</ul>
+
+				<p>Developed by <a href="https://github.com/VitorgsRuffo">Vitor G.S Ruffo</a></p>
 			</div>
 
 		</footer>
