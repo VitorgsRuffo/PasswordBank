@@ -50,7 +50,7 @@
 							</div>
 
 							<div>
-								<a href="more-details.php?id=<?php echo htmlspecialchars($row['id']);?>">More</a>
+								<a href="account-details.php?id=<?php echo htmlspecialchars($row['id']);?>">More</a>
 							</div>
 						</div>
 					<?php endforeach; ?>

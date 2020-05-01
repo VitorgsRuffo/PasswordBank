@@ -57,6 +57,7 @@
 
 							$_SESSION['userId'] = $record['id'];
 							$_SESSION['username'] = $record['username'];
+							$_SESSION['email'] = $record['email'];
 
 							header("Location: ../home.php");
 

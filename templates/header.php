@@ -32,7 +32,7 @@
 				<nav>
 					<ul>
 						<li>Welcome <?php echo htmlspecialchars($_SESSION['username']); ?></li>
-						<li><a href="#">Profile</a></li>
+						<li><a href="profile.php">Profile</a></li>
 						<li><a href="index.php">The idea</a></li>
 						<li><a href="home.php">Home</a></li>
 					</ul>
