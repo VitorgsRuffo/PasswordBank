@@ -2,10 +2,10 @@
 	
 	$serverName = NULL;
 	$dbUsername = "root";
-	$dbPassword = "pwd";
+	$dbPassword = "";
 	$dbName = "passwordbank";
 	$port = "80";
-	$socket = "socket";
+	$socket = "";
 
 
 	$connection = mysqli_connect($serverName, $dbUsername, $dbPassword, $dbName, $port, $socket);

@@ -39,7 +39,7 @@
 			<span><h3>Your passwordbank:</h3></span>
 
 			<div>
-				<ul>	
+				<ul>	       
 					<?php foreach($resultSet as $row): ?>
 						<div>
 							<div>
