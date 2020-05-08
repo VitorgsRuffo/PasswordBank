@@ -161,14 +161,13 @@
 				//executing the command on the database:
 				mysqli_stmt_execute($statement);
 
-				header("Location: ../index.php?success=signup");
+				header("Location: ../sign-up.php?success=signup");
 
 				exit();
 
 			}
 
 		//freeing resources used:
-
 		mysqli_stmt_close($statement);
 
 		mysqli_close($connection);

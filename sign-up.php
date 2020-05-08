@@ -79,45 +79,60 @@
 
 	<main>
 		<div>
-			<div>
-				<h2>Now you are only a few steps from keeping all your passwords safe!</h2>
 
-				<h3>Create your account</h3>
-			</div>
-
-			<div>
-
-				<form action="scripts/sign-up-script.php" method="POST">
-
-					<div><?php echo $empty; ?></div>
-
-					<label for="username">Username</label>
-					<input type="text" name="username" id="username" value="<?php echo $username; ?>">
-					<div><?php echo $usernameError; ?></div>
-
-					<label for="Email">E-mail</label>
-					<input type="text" name="email" id="Email" value="<?php echo $email; ?>">
-					<div><?php echo $emailError; ?></div>
-
-					<label for="pwd">Password</label>
-					<input type="password" name="password" id="pwd">
-					<div></div>
-
-					<label for="pwd-2">Repeat password</label>
-					<input type="password" name="password-2" id="pwd-2">
-					<div><?php echo $pwdError; ?></div>
-
-					<div><input type="checkbox" name="cBox">By clicking, you agree to our Terms of Use and Privacy Policy.</div>
-
-					<input type="submit" name="submit" value="Sign up">
-						
-				</form>
+			<?php if(!isset($_GET['success'])): ?>
 
 				<div>
-					Already have an account? <a href="sign-in.php">Sign in</a>
+					<h2>Now you are only a few steps from keeping all your passwords safe!</h2>
+
+					<h3>Create your account</h3>
 				</div>
 
-			</div>
+				<div>
+
+					<form action="scripts/sign-up-script.php" method="POST">
+
+						<div><?php echo $empty; ?></div>
+
+						<label for="username">Username</label>
+						<input type="text" name="username" id="username" value="<?php echo $username; ?>">
+						<div><?php echo $usernameError; ?></div>
+
+						<label for="Email">E-mail</label>
+						<input type="text" name="email" id="Email" value="<?php echo $email; ?>">
+						<div><?php echo $emailError; ?></div>
+
+						<label for="pwd">Password</label>
+						<input type="password" name="password" id="pwd">
+						<div></div>
+
+						<label for="pwd-2">Repeat password</label>
+						<input type="password" name="password-2" id="pwd-2">
+						<div><?php echo $pwdError; ?></div>
+
+						<div><input type="checkbox" name="cBox">By clicking, you agree to our Terms of Use and Privacy Policy.</div>
+
+						<input type="submit" name="submit" value="Sign up">
+							
+					</form>
+
+					<div>
+						Already have an account? <a href="sign-in.php">Sign in</a>
+					</div>
+				</div>
+			<?php else: ?>
+
+				<div>
+					<h2>Now you are only a few steps from keeping all your passwords safe!</h2>
+
+					<h3>Congratulations, you have successfully registered at the website! </h3>
+				</div>
+
+				<div>
+					<a href="index.php">Go back</a>
+				</div>
+
+			<?php endif; ?>
 		</div>
 	</main>
 		
