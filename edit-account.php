@@ -1,6 +1,36 @@
 <?php require("templates/header.php");  ?>
 
-<?php
+<?php //erro: se errar na ediçao a senha n retornada. Talvez uma solucao seria puchar os dados da db dnovo ao inves de tranmiti-los pra esta page com um POST.
+    $id = '';
+    $service = '';
+    $emailuid = '';
+    $pwd = '';
+    $extra = '';
+    $desc = '';
+
+    $empty = '';
+    $serviceErr = '';
+    $emailuidErr = '';
+    $pwdErr = '';
+    $extraErr = '';
+    $descErr = '';
+
+    function fillFields(){
+        global $id;
+        $id = isset($_GET['id']) ? htmlspecialchars($_GET['id']) : '';
+
+        global $service;
+        $service = isset($_GET['service']) ? htmlspecialchars($_GET['service']) : '';
+
+        global $emailuid;
+        $emailuid = isset($_GET['emailuid']) ? htmlspecialchars($_GET['emailuid']) : '';
+
+        global $extra;
+        $extra = isset($_GET['extra']) ? htmlspecialchars($_GET['extra']) : '';
+
+        global $desc;
+        $desc = isset($_GET['desc']) ? htmlspecialchars($_GET['desc']) : '';
+    }
 
     if(isset($_POST['editPage'])){
         $id = htmlspecialchars($_POST['id']);
@@ -8,65 +38,65 @@
         $emailuid = htmlspecialchars($_POST['emailuid']);
         $pwd = htmlspecialchars($_POST['pwd']);
         $extra = htmlspecialchars($_POST['extra']);
-        $description = htmlspecialchars($_POST['description']);
+        $desc = htmlspecialchars($_POST['description']);
     }
-    
-    else if(isset($_POST['edit'])){
-
-        $id = htmlspecialchars($_POST['idToUpdate']);
-        $service = htmlspecialchars($_POST['service']);
-        $emailuid = htmlspecialchars($_POST['emailuid']);
-        $pwd = htmlspecialchars($_POST['pwd']);
-        $extra = htmlspecialchars($_POST['extra']);
-        $description = htmlspecialchars($_POST['description']);
-
-        require("config/db_connect.php");
-
-        $sql = "UPDATE accounts 
-                SET service=?, emailuid=?, pwd=?, extra=?, description=? 
-                WHERE id=?";
-        
-        $statement = mysqli_stmt_init($connection);
-
-        if(!mysqli_stmt_prepare($statement, $sql)){
-            header("Location: account-details.php?id=".$id."&updateError=sqlError");
-            exit();
+   
+    else if(isset($_GET['error'])){
+        switch($_GET['error']){
+            case "emptyfields":
+                $empty = "Fill in all required fields *";
+                fillFields();
+                break;
+            case "invalidservice":
+                $serviceErr = "Service must only contain letters, numbers, underscores, dots and be 1-20 characters long.";
+                fillFields();
+                break;
+            case "emailuidnotvalid":
+                $emailuidErr = "Email must be a valid address. Username must only contain letters, numbers, underscores, and also be 5-20 characters long.";
+                fillFields();
+                break;
+            case "pwdtoolong":
+                $pwdErr = "Password cannot be longer than 50 characters.";
+                fillFields();
+                break;
+            case "extratoolong":
+                $extraErr = "Extra information about an account cannot be longer than 255 characters.";
+                fillFields();
+                break;
+            case "desctoolong":
+                $descErr = "Account description cannot be longer than 255 characters.";
+                fillFields();
+                break;
         }
-
-        //$hashedPassword = password_hash($pwd, PASSWORD_DEFAULT);
-    
-        mysqli_stmt_bind_param($statement, "ssssss", $service, $emailuid, $pwd, $extra, $description, $id);
-
-        mysqli_stmt_execute($statement);
-
-        //do some checkings to see if it was possible to run the query.
-        //$e = mysqli_stmt_error($statement);
-        
-        header("Location: account-details.php?id=".$id."&edit=success");
-        exit();
     }
-    
+
     else{
         header("Location: home.php");
         exit();
     }
-
+    
 ?>
 
     <main>
         <div>
-            <form action="edit-account.php" method="POST">
+            <div><?php echo $empty;?></div>
+            <form action="scripts/edit-account-script.php" method="POST">
                 <input type="hidden" name="idToUpdate" value="<?php echo $id;?>">
-                <h3>Service: </h3>
-                <input type="text" name="service" value="<?php echo htmlspecialchars($service);?>">
-                <h3>Email/username: </h3>
-                <input type="text" name="emailuid" value="<?php echo htmlspecialchars($emailuid);?>"> 
-                <h3>Password: </h3>
-                <input type="text" name="pwd" value="<?php echo htmlspecialchars($pwd);?>">
+                <h3>Service: *</h3>
+                <input type="text" name="service" value="<?php echo $service;?>">
+                <div><?php echo $serviceErr;?></div>
+                <h3>Email/username: *</h3>
+                <input type="text" name="emailuid" value="<?php echo $emailuid;?>"> 
+                <div><?php echo $emailuidErr;?></div>
+                <h3>Password: *</h3>
+                <input type="text" name="pwd" value="<?php echo $pwd;?>">
+                <div><?php echo $pwdErr;?></div>
                 <h3>Extra information: </h3>
-                <textarea name="extra" cols="50" rows="5"><?php echo htmlspecialchars($extra);?></textarea>
+                <textarea name="extra" cols="50" rows="5"><?php echo $extra;?></textarea>
+                <div><?php echo $extraErr;?></div>
                 <h3>Description: </h3>
-                <textarea name="description" cols="50" rows="5"><?php echo htmlspecialchars($description);?></textarea>
+                <textarea name="description" cols="50" rows="5"><?php echo $desc;?></textarea>
+                <div><?php echo $descErr;?></div>
                 <input type="submit" name="edit" value="Done">
             </form>
         </div>
