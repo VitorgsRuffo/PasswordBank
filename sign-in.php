@@ -23,6 +23,9 @@
 	<main>
 		<div>
 			<h2>Sign in</h2>
+			<?php if(isset($_GET['pwdreset']) && $_GET['pwdreset'] === 'success'): ?>
+				<p>Your password has been reseted!</p>
+			<?php endif; ?>
 		</div>
 
 		<div>	
@@ -39,7 +42,7 @@
 				<input type="submit" name="submit" value="Sign in">
 			</form>
 
-			<div><a href="#">Forgot password?</a></div>
+			<div><a href="reset-password.php">Forgot password?</a></div>
 
 			<div>Don't have an account? <a href="sign-up.php">Sign up</a></div>
 		</div>

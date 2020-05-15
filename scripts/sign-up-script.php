@@ -12,7 +12,7 @@
 		$password_2 = $_POST['password-2'];
 
 
-		//validating user input:
+		//validating user input:   ((VALIDATE ACCORDING TO THE DATABASE DATA FORMATS))
 		
 			//checking if any field is empty:
 			if(empty($username) || empty($email) ||empty($password) || empty($password_2)){
